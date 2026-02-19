@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a50e2d36dd6d16b46ad094a10af67b31, type: 3}
+  m_Name: Coward
+  m_EditorClassIdentifier: Assembly-CSharp::CharactersTraits
+  traitsName: Coward
+  cowardiceMin: 10
+  cowardiceMax: 15
+  braveMin: 2
+  braveMax: 6
+  loaltyMin: 10
+  loaltyMax: 20
+  selfcontrolMin: 4
+  selfcontrolMax: 8
