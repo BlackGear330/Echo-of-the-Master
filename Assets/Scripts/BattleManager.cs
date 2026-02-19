@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    [SerializeField] private Situation[] _situation;
     public GameObject[] EnemiesSlot;
     public GameObject[] CharactersSlot;
     MeleeLogic _meleeLogic;
