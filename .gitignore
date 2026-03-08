@@ -1,0 +1,31 @@
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[探]Logs/
+/[Uu]serSettings/
+/[MemoryCaptures]/
+Logs/
+
+# Игнорируем файлы решений IDE
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# Игнорируем скрытую папку Rider/VS Code
+.idea/
+.vscode/
+
+# Игнорируем системные файлы ОС
+.DS_Store
+Thumbs.db
