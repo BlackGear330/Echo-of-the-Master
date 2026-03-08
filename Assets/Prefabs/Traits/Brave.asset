@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a50e2d36dd6d16b46ad094a10af67b31, type: 3}
+  m_Script: {fileID: 11500000, guid: 855db6f5ba03c454887b1d4c0c7534be, type: 3}
   m_Name: Brave
-  m_EditorClassIdentifier: Assembly-CSharp::CharactersTraits
-  traitsName: Brave
-  cowardiceMin: 2
-  cowardiceMax: 4
-  braveMin: 10
-  braveMax: 15
-  loaltyMin: 15
-  loaltyMax: 20
-  selfcontrolMin: 10
-  selfcontrolMax: 15
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTraits
+  traitName: Brave
+  bravery: 2
+  cowardice: 2
+  empathy: 2
+  closedness: 2
+  composure: 2
+  anxiety: 2
