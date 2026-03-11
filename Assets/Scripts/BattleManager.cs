@@ -48,7 +48,11 @@ public class BattleManager : MonoBehaviour
             Debug.Log($"Слот {i} {(occupiedCharapter ? "занят" : "пустой")}");
         }
         
-    } 
-    
+    }
+
+    void MakeSituation()
+    {
+        //получить Situation и в зависимости от типа отдать.
+    }
     
 }
