@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 namespace AILogic
 {
     public enum AIDecision
@@ -33,6 +34,14 @@ namespace AILogic
             float fightWeight = _characterTraits.bravery;
             float apathyWeight = _characterTraits.anxiety;
             float retreatWeight = _characterTraits.cowardice;
+            
+            
+            fightWeight +=  + (-_states.stress/100 -_states.fear/100 -_states.exhaustion/100);
+            float randomFactor = UnityEngine.Random.Range(0.85f, 1.15f);// для генерации рандома.
+            fightWeight *= randomFactor;
+            fightWeight = Mathf.Clamp(fightWeight, 0f, 100f) ; 
+            
+            Debug.Log($"fight chance {gameObject.name} {fightWeight}");
 
             return AIDecision.Fight;
         }

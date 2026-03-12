@@ -1,3 +1,4 @@
+using AILogic;
 using UnityEngine;
 
 
@@ -6,6 +7,7 @@ public class BattleManager : MonoBehaviour
     public GameObject[] EnemiesSlot;
     public GameObject[] CharactersSlot;
     MeleeLogic _meleeLogic;
+    DecisionMaker _decisionMaker;
 
     public bool IsSlotOccupied(GameObject[] currentSlots, int i) // проверка, что у слота массива есть компонент Health
     {
@@ -18,7 +20,8 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        
+        MakeSituation();
+       
         if (EnemiesSlot == null || EnemiesSlot.Length == 0)
         {
             Debug.Log("Массив врагов не инициализирован или пуст");
@@ -53,6 +56,18 @@ public class BattleManager : MonoBehaviour
     void MakeSituation()
     {
         //получить Situation и в зависимости от типа отдать.
+        DecisionMaker[] _decisionMakers = new DecisionMaker[CharactersSlot.Length];
+
+        for (int i = 0; i < CharactersSlot.Length; i++)
+        {
+            _decisionMakers[i] = CharactersSlot[i].GetComponentInChildren<DecisionMaker>();
+            Debug.Log($"слот {i}: {_decisionMakers[i]}");
+            if (_decisionMakers[i] != null)
+            {
+                _decisionMakers[i].MakeDecision();
+            }
+        }
+        
     }
     
 }
