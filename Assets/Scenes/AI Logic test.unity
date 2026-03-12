@@ -1781,6 +1781,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2994531682042415193, guid: fd2de4bd876f4ac4980370e624362931, type: 3}
   m_PrefabInstance: {fileID: 1581118572}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &570439496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7575897385000186938, guid: 826a8b5a603a29c4281db8081cd04a4e, type: 3}
+  m_PrefabInstance: {fileID: 3906341494859548623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &572036094
 GameObject:
   m_ObjectHideFlags: 0
@@ -6384,6 +6389,47 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7019094306291720264, guid: 826a8b5a603a29c4281db8081cd04a4e, type: 3}
   m_PrefabInstance: {fileID: 3906341494859548623}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1989266594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570439496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717c04ef464177e45bf50d1498f44256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AILogic.DecisionMaker
+  _characterTraits: {fileID: 11400000, guid: d4b0177ca343600459cf4967dab45181, type: 2}
+--- !u!114 &1989266595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570439496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cd1b9b962a18684bbada41d1b7f7113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AILogic.States
+  stress: 0
+  fear: 0
+  exhaustion: 0
+  trust: 0
+--- !u!114 &1989266596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570439496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf2dc4f520680442b79a88eb38e8ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AILogic.Memory
 --- !u!4 &2010138208 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7129311838990729822, guid: 73f35047cd0dc074782b900229ac5468, type: 3}
@@ -6596,7 +6642,16 @@ PrefabInstance:
     - {fileID: -1488785885008157824, guid: 826a8b5a603a29c4281db8081cd04a4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7575897385000186938, guid: 826a8b5a603a29c4281db8081cd04a4e, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1989266594}
+    - targetCorrespondingSourceObject: {fileID: 7575897385000186938, guid: 826a8b5a603a29c4281db8081cd04a4e, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 1989266596}
+    - targetCorrespondingSourceObject: {fileID: 7575897385000186938, guid: 826a8b5a603a29c4281db8081cd04a4e, type: 3}
+      insertIndex: 8
+      addedObject: {fileID: 1989266595}
   m_SourcePrefab: {fileID: 100100000, guid: 826a8b5a603a29c4281db8081cd04a4e, type: 3}
 --- !u!1001 &4672380388806513868
 PrefabInstance:
@@ -6726,9 +6781,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 638623115555874315, guid: f6ebbc9548e418942bae5cef01a38614, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6166998624948411529}
-    - targetCorrespondingSourceObject: {fileID: 638623115555874315, guid: f6ebbc9548e418942bae5cef01a38614, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6166998624948411522}
   m_SourcePrefab: {fileID: 100100000, guid: f6ebbc9548e418942bae5cef01a38614, type: 3}
 --- !u!1 &6166998624948411520 stripped
 GameObject:
@@ -6751,19 +6803,6 @@ MonoBehaviour:
   fear: 0
   exhaustion: 0
   trust: 0
---- !u!114 &6166998624948411522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6166998624948411520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717c04ef464177e45bf50d1498f44256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AILogic.DecisionMaker
-  _characterTraits: {fileID: 11400000, guid: d4b0177ca343600459cf4967dab45181, type: 2}
 --- !u!114 &6166998624948411529
 MonoBehaviour:
   m_ObjectHideFlags: 0
