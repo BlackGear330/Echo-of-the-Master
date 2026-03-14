@@ -42,9 +42,9 @@ namespace AILogic
             // БОЙ: паника мешает, усталость мешает
             fightWeight *= (1f - panicMod) * (1f - exhaustionMod);
             // АПАТИЯ: паника усиливает ступор, усталость СИЛЬНО усиливает (в квадрате)
-            apathyWeight *= (1f - panicMod) * (1f + exhaustionMod * exhaustionMod);
-            // ОТСТУПЛЕНИЕ: паника СИЛЬНО гонит (в квадрате), но усталость мешает бежать
-            retreatWeight *= (1f + panicMod * panicMod) * (1f - exhaustionMod * 0.5f);
+            apathyWeight *= (1f + panicMod) * (1f + exhaustionMod * exhaustionMod);
+            // ОТСТУПЛЕНИЕ: паника СИЛЬНО гонит (в квадрате), усталость немного.
+            retreatWeight *= (1f + panicMod * panicMod) * (1f + exhaustionMod * 0.5f);
             
             //Расчет с модификаторами с защитой от 0.
             fightWeight = Mathf.Max(fightWeight * randomFactor, 1f);
@@ -57,7 +57,16 @@ namespace AILogic
             Debug.Log($"Apathy weight {apathyWeight}, тревожность: {_characterTraits.anxiety}, стресс: {_states.stress}, страх: {_states.fear}");
             Debug.Log($"Retreat weight {retreatWeight}, трусость: {_characterTraits.cowardice}, стресс: {_states.stress}, страх: {_states.fear}");
             
-            // TODO нормализация
+            //Нормализация
+            float totalWeight = fightWeight + apathyWeight + retreatWeight;
+            
+            float fightWeightPercent = fightWeight /  totalWeight * 100f;
+            float apathyWeightPercent = apathyWeight /  totalWeight * 100f;
+            float retreatWeightPercent = retreatWeight /  totalWeight * 100f;
+            
+            Debug.Log($"В процентах шанс боя {fightWeightPercent}%");
+            Debug.Log($"В процентах шанс ступора {apathyWeightPercent}%");
+            Debug.Log($"В процентах шанс отступления {retreatWeightPercent}%");
             
             
             //заглушка пока что

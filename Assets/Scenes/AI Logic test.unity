@@ -6414,9 +6414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd1b9b962a18684bbada41d1b7f7113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AILogic.States
-  stress: 0
-  fear: 0
-  exhaustion: 0
+  stress: 29.1
+  fear: 60.8
+  exhaustion: 14.6
   trust: 0
 --- !u!114 &1989266596
 MonoBehaviour:
@@ -6777,6 +6777,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 638623115555874315, guid: f6ebbc9548e418942bae5cef01a38614, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 6166998624948411536}
+    - targetCorrespondingSourceObject: {fileID: 638623115555874315, guid: f6ebbc9548e418942bae5cef01a38614, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 6166998624948411521}
     - targetCorrespondingSourceObject: {fileID: 638623115555874315, guid: f6ebbc9548e418942bae5cef01a38614, type: 3}
       insertIndex: -1
@@ -6799,7 +6802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd1b9b962a18684bbada41d1b7f7113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AILogic.States
-  stress: 0
+  stress: 52.5
   fear: 0
   exhaustion: 0
   trust: 0
@@ -6815,6 +6818,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf2dc4f520680442b79a88eb38e8ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AILogic.Memory
+--- !u!114 &6166998624948411536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6166998624948411520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717c04ef464177e45bf50d1498f44256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AILogic.DecisionMaker
+  _characterTraits: {fileID: 11400000, guid: d4b0177ca343600459cf4967dab45181, type: 2}
 --- !u!1001 &7159241408433234602
 PrefabInstance:
   m_ObjectHideFlags: 0
