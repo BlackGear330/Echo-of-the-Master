@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -35,17 +36,28 @@ namespace AILogic
             float apathyWeight = _characterTraits.anxiety;
             float retreatWeight = _characterTraits.cowardice;
             float randomFactor = UnityEngine.Random.Range(0.85f, 1.15f); // для генерации рандома.
+            float panicMod = Mathf.Clamp01((_states.stress + _states.fear) / 100f); // общий множитель для 3 вариантов
+            float exhaustionMod = Mathf.Clamp01(_states.exhaustion / 100f); // общий множитель для 3 вариантов
+            float negativeEffectPanic = 1.0f - panicMod;
+            float positiveEffectPanic = 1.0f + panicMod;
+            float negativeEffectExhaustion = 1.0f - exhaustionMod;
+            float positiveEffectExhaustion = 1.0f + exhaustionMod;
             
-            //TODO Модификаторы для Fight , пока что тест. (Переделать по плану, сделать общие множители для всех 3 вариантов "см. план реализации, шаг 2")
+      
+            
+            /*//TODO Модификаторы для Fight , пока что тест. (Переделать по плану, сделать общие множители для всех 3 вариантов "см. план реализации, шаг 2")
             float stressMod = 1.0f - (_states.stress / 100f);
             stressMod = Mathf.Max(stressMod, 0f);
             float fearMod = 1.0f - (_states.fear / 100f);
             fearMod = Mathf.Max(fearMod, 0f);
             float exhaustMod = 1.0f - (_states.exhaustion / 100f);
             exhaustMod = Mathf.Max(exhaustMod, 0f);
-
+            */
+            
             //TODO Расчет с модификаторами
-            fightWeight *= stressMod * fearMod * exhaustMod * randomFactor;
+            fightWeight *=  negativeEffectPanic * negativeEffectExhaustion * randomFactor;
+            apathyWeight *= positiveEffectExhaustion *  positiveEffectPanic * randomFactor;
+            retreatWeight *= positiveEffectPanic * positiveEffectExhaustion * randomFactor;
 
             
             Debug.Log($"Fight chanceMod {fightWeight}");

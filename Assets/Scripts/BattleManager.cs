@@ -56,11 +56,12 @@ public class BattleManager : MonoBehaviour
     void MakeSituation()
     {
         //получить Situation и в зависимости от типа отдать.
-        DecisionMaker[] _decisionMakers = new DecisionMaker[CharactersSlot.Length];
+        
+        DecisionMaker[] _decisionMakers = new DecisionMaker[CharactersSlot.Length]; //создается массив
 
         for (int i = 0; i < CharactersSlot.Length; i++)
         {
-            _decisionMakers[i] = CharactersSlot[i].GetComponentInChildren<DecisionMaker>();
+            _decisionMakers[i] = CharactersSlot[i].GetComponentInChildren<DecisionMaker>(); //находим каждый скрипт DecisionMaker в массиве
             Debug.Log($"слот {i}: {_decisionMakers[i]}");
             if (_decisionMakers[i] != null)
             {

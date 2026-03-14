@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Brave
   m_EditorClassIdentifier: Assembly-CSharp::CharacterTraits
   traitName: Brave
-  bravery: 2
-  cowardice: 2
-  empathy: 2
+  bravery: 4
+  cowardice: 3
+  empathy: 4
   closedness: 2
   composure: 2
   anxiety: 2
