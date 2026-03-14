@@ -6414,9 +6414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd1b9b962a18684bbada41d1b7f7113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AILogic.States
-  stress: 10
-  fear: 5
-  exhaustion: 2
+  stress: 0
+  fear: 0
+  exhaustion: 0
   trust: 0
 --- !u!114 &1989266596
 MonoBehaviour:
