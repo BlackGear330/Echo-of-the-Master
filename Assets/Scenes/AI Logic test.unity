@@ -6414,9 +6414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd1b9b962a18684bbada41d1b7f7113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AILogic.States
-  stress: 29.1
-  fear: 60.8
-  exhaustion: 14.6
+  stress: 6.3
+  fear: 5.1
+  exhaustion: 7
   trust: 0
 --- !u!114 &1989266596
 MonoBehaviour:
@@ -6592,7 +6592,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7286306345164576172, guid: 826a8b5a603a29c4281db8081cd04a4e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7019094306291720264, guid: 826a8b5a603a29c4281db8081cd04a4e, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -9,6 +10,7 @@ namespace AILogic
         Apathy,
         Retreat
     }
+   
     public class DecisionMaker : MonoBehaviour
     {
         States _states;
@@ -84,8 +86,6 @@ namespace AILogic
                 return AIDecision.Apathy;
             }
             
-            
-   
         }
         
     }

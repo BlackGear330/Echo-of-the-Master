@@ -1,3 +1,4 @@
+using AILogic;
 using UnityEngine;
 
 
@@ -12,7 +13,8 @@ public class AttackController : MonoBehaviour
     RangedLogic _rangedLogic;
     HealerLogic _healerLogic;
     private float _nextAttackTime = 0f;
-
+    DecisionMaker _decisionMaker;
+    AIDecision decision;
 
     void Start()
     {
@@ -21,89 +23,98 @@ public class AttackController : MonoBehaviour
         _rangedLogic = GetComponent<RangedLogic>();
         _healerLogic = GetComponent<HealerLogic>();
         _health = GetComponent<Health>();
+        _decisionMaker = GetComponentInChildren<DecisionMaker>();
+        if (_unit._faction == FactionType.Player && _decisionMaker != null )
+        {
+            decision = _decisionMaker.MakeDecision();
+        }
         
     }
 
     private void PerformAttack()
     {
-          if (_meleeLogic != null)
-          {
-              GameObject[] targetSlots = _unit._faction == FactionType.Player
-                  ? _battleManager.EnemiesSlot
-                  : _battleManager.CharactersSlot;
-
-              Health targetHealth = _meleeLogic.InTheSlot(targetSlots);
-              if (targetHealth != null)
-              {
-                  if (Time.time >= _nextAttackTime)
-                  {
-                      targetHealth.TakeDamage(_damage);
-                      Debug.Log($"{gameObject.name} выбираю {targetHealth} и наношу {_damage} урона");
-                      _nextAttackTime = Time.time + _unit.AttackSpeed;
-                  }
-                    
-              }
-          }
-
-
-          if (_rangedLogic != null && _healerLogic == null)
-          {
-              GameObject[] targetSlots1 = _unit._faction == FactionType.Player
-                  ? _battleManager.EnemiesSlot
-                  : _battleManager.CharactersSlot;
-              Health targetHealth = _rangedLogic.InTheSlot(targetSlots1);
-              if (targetHealth != null)
-              {
-                  if (Time.time >= _nextAttackTime)
-                  {
-                      targetHealth.TakeDamage(_damage);
-                      Debug.Log($"{gameObject.name} выбираю {targetHealth} стреляю и наношу {_damage} урона");
-                      _nextAttackTime = Time.time + _unit.AttackSpeed;
-                  }
-                    
-              }
-
-          }
-
-          if (_healerLogic != null)
-          {
-              GameObject[] allySlots = _unit._faction == FactionType.Player
-                  ? _battleManager.CharactersSlot
-                  : _battleManager.EnemiesSlot;
-
-              Health woundedAlly = _healerLogic.InTheSlot(allySlots);
-
-              if (woundedAlly != null)
-              {
-                  if (Time.time >= _nextAttackTime)
-                  {
-                      woundedAlly.Heal(_heal);
-                      Debug.Log($"{gameObject.name}  Лечу {woundedAlly} на {_heal}");
-                      _nextAttackTime = Time.time + _unit.AttackSpeed;
-                  }
-              }
-              else if (_rangedLogic != null)
-              {
-                  GameObject[] enemySlots = _unit._faction == FactionType.Player
-                      ? _battleManager.EnemiesSlot
-                      : _battleManager.CharactersSlot;
-
-                  Health enemy = _rangedLogic.InTheSlot(enemySlots);
-                  if (enemy != null)
-                  {
-                      if (Time.time >= _nextAttackTime)
-                      {                            
-                          enemy.TakeDamage(_damage);
-                          Debug.Log($"{gameObject.name}  Атакую магией {enemy} на {_damage}");
-                          _nextAttackTime = Time.time + _unit.AttackSpeed;
-                      }
-                  }
-              }
-          }
+        if (decision != AIDecision.Fight)
+            return;
         
+        if (_meleeLogic != null)
+        {
+            GameObject[] targetSlots = _unit._faction == FactionType.Player
+                ? _battleManager.EnemiesSlot
+                : _battleManager.CharactersSlot;
+
+            Health targetHealth = _meleeLogic.InTheSlot(targetSlots);
+            if (targetHealth != null)
+            {
+                if (Time.time >= _nextAttackTime)
+                {
+                    targetHealth.TakeDamage(_damage);
+                    Debug.Log($"{gameObject.name} выбираю {targetHealth} и наношу {_damage} урона");
+                    _nextAttackTime = Time.time + _unit.AttackSpeed;
+                }
+
+            }
+        }
+
+
+        if (_rangedLogic != null && _healerLogic == null)
+        {
+            GameObject[] targetSlots1 = _unit._faction == FactionType.Player
+                ? _battleManager.EnemiesSlot
+                : _battleManager.CharactersSlot;
+            Health targetHealth = _rangedLogic.InTheSlot(targetSlots1);
+            if (targetHealth != null)
+            {
+                if (Time.time >= _nextAttackTime)
+                {
+                    targetHealth.TakeDamage(_damage);
+                    Debug.Log($"{gameObject.name} выбираю {targetHealth} стреляю и наношу {_damage} урона");
+                    _nextAttackTime = Time.time + _unit.AttackSpeed;
+                }
+
+            }
+
+        }
+
+        if (_healerLogic != null)
+        {
+            GameObject[] allySlots = _unit._faction == FactionType.Player
+                ? _battleManager.CharactersSlot
+                : _battleManager.EnemiesSlot;
+
+            Health woundedAlly = _healerLogic.InTheSlot(allySlots);
+
+            if (woundedAlly != null)
+            {
+                if (Time.time >= _nextAttackTime)
+                {
+                    woundedAlly.Heal(_heal);
+                    Debug.Log($"{gameObject.name}  Лечу {woundedAlly} на {_heal}");
+                    _nextAttackTime = Time.time + _unit.AttackSpeed;
+                }
+            }
+            else if (_rangedLogic != null)
+            {
+                GameObject[] enemySlots = _unit._faction == FactionType.Player
+                    ? _battleManager.EnemiesSlot
+                    : _battleManager.CharactersSlot;
+
+                Health enemy = _rangedLogic.InTheSlot(enemySlots);
+                if (enemy != null)
+                {
+                    if (Time.time >= _nextAttackTime)
+                    {
+                        enemy.TakeDamage(_damage);
+                        Debug.Log($"{gameObject.name}  Атакую магией {enemy} на {_damage}");
+                        _nextAttackTime = Time.time + _unit.AttackSpeed;
+                    }
+                }
+            }
+        }
     }
     private void FixedUpdate()
     {
         PerformAttack();
     }
+    
+    
 }
