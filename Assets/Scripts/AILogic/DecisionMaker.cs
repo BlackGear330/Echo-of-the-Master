@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 
@@ -68,7 +67,6 @@ namespace AILogic
             Debug.Log($"В процентах шанс отступления {retreatWeightPercent}%");
             
             float randomRoll = UnityEngine.Random.Range(0f, 100f);
-            float cumulative = 0f;
 
             if (randomRoll < fightWeightPercent)
             {

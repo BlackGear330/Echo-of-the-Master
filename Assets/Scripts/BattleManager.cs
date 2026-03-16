@@ -6,8 +6,6 @@ public class BattleManager : MonoBehaviour
 {
     public GameObject[] EnemiesSlot;
     public GameObject[] CharactersSlot;
-    MeleeLogic _meleeLogic;
-    DecisionMaker _decisionMaker;
 
     public bool IsSlotOccupied(GameObject[] currentSlots, int i) // проверка, что у слота массива есть компонент Health
     {
@@ -20,7 +18,6 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        MakeSituation();
        
         if (EnemiesSlot == null || EnemiesSlot.Length == 0)
         {
@@ -41,7 +38,8 @@ public class BattleManager : MonoBehaviour
             //Debug.Log("Массив персонажей не инициализирован или пуст");
             return;
         }
-
+        
+        MakeSituation();
         //int sizeCharapterAll = CharactersSlot.Length;
         //Debug.Log($"Всего слотов персонажей: {sizeCharapterAll}");
 
