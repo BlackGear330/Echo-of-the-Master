@@ -141,8 +141,8 @@ Retreat = Cowardice × (1 + panicMod²)  × (1 + exhaustionMod×0.5)  × Random(
 
 ## Контакты
 
-- **LinkedIn:** [Твоё имя](https://linkedin.com/in/твой-профиль)
-- **Telegram:** [@твой_ник](https://t.me/твой_ник)
+- **Telegram:** [@LegionTST](https://t.me/LegionTST)
+- **LinkedIn:** [Aleksander Eirikh](https://www.linkedin.com/in/aleksander-eirikh-06967a327/)
 
 ---
 
