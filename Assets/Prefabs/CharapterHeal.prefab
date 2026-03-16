@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 8890578539849058550}
   - component: {fileID: 2024823927390085837}
   - component: {fileID: 2094843549091764114}
-  - component: {fileID: -5219219183762091680}
   m_Layer: 0
   m_Name: CharapterHeal
   m_TagString: Player
@@ -172,19 +171,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d439aa78fddee4d4bbee847d6ece230d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedLogic
---- !u!114 &-5219219183762091680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7922383994997730425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71577df5dd35de049866ac0dfdd2c46e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Characters
-  _charactersTraits:
-  - {fileID: 11400000, guid: e46aa58273fb8224eba9145c21beb7af, type: 2}
-  - {fileID: 11400000, guid: 73452687155a11e4fbe7fe9102b214be, type: 2}
-  - {fileID: 11400000, guid: d48c5f25f514c674cae959833ddc055f, type: 2}

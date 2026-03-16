@@ -51,7 +51,6 @@ namespace AILogic
             apathyWeight = Mathf.Max(apathyWeight * randomFactor, 1f);
             retreatWeight = Mathf.Max(retreatWeight * randomFactor, 1f);
             
-            // TODO протестировать с двумя умножениями для экспоненциального роста, если не зайдет вернуть на одно умножение.
             
             Debug.Log($"Fight weight {fightWeight}, храбрость: {_characterTraits.bravery}, стресс: {_states.stress}, страх: {_states.fear}, усталость {_states.exhaustion}");
             Debug.Log($"Apathy weight {apathyWeight}, тревожность: {_characterTraits.anxiety}, стресс: {_states.stress}, страх: {_states.fear}");
@@ -65,12 +64,30 @@ namespace AILogic
             float retreatWeightPercent = retreatWeight /  totalWeight * 100f;
             
             Debug.Log($"В процентах шанс боя {fightWeightPercent}%");
-            Debug.Log($"В процентах шанс ступора {apathyWeightPercent}%");
+            Debug.Log($"В процентах шанс апатии {apathyWeightPercent}%");
             Debug.Log($"В процентах шанс отступления {retreatWeightPercent}%");
             
+            float randomRoll = UnityEngine.Random.Range(0f, 100f);
+            float cumulative = 0f;
+
+            if (randomRoll < fightWeightPercent)
+            {
+                Debug.Log($"Выбор: Бой | Шанс: {fightWeightPercent:F1}% | Roll: {randomRoll:F1}");
+                return AIDecision.Fight;
+            }
+            else if (randomRoll < fightWeightPercent + retreatWeightPercent)
+            {
+                Debug.Log($"Выбор: Отступление | Шанс: {retreatWeightPercent:F1}% | Roll: {randomRoll:F1}");
+                return AIDecision.Retreat;
+            }
+            else
+            {
+                Debug.Log($"Выбор: Апатия | Шанс: {apathyWeightPercent:F1}% | Roll: {randomRoll:F1}");
+                return AIDecision.Apathy;
+            }
             
-            //заглушка пока что
-            return AIDecision.Fight;
+            
+   
         }
         
     }

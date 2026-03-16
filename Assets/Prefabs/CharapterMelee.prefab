@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5665411083262148940}
   - component: {fileID: 8377026002289775698}
   - component: {fileID: -2605258641267200224}
-  - component: {fileID: 4033626655886170294}
   m_Layer: 0
   m_Name: CharapterMelee
   m_TagString: Player
@@ -159,19 +158,3 @@ MonoBehaviour:
   _unit: {fileID: 11400000, guid: 4ebfb9317a6b08d46956817710fafc48, type: 2}
   _damage: 11
   _heal: 0
---- !u!114 &4033626655886170294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638623115555874315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71577df5dd35de049866ac0dfdd2c46e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Characters
-  _charactersTraits:
-  - {fileID: 11400000, guid: e46aa58273fb8224eba9145c21beb7af, type: 2}
-  - {fileID: 11400000, guid: 73452687155a11e4fbe7fe9102b214be, type: 2}
-  - {fileID: 11400000, guid: d48c5f25f514c674cae959833ddc055f, type: 2}
