@@ -39,7 +39,6 @@ public class BattleManager : MonoBehaviour
             return;
         }
         
-        MakeSituation();
         //int sizeCharapterAll = CharactersSlot.Length;
         //Debug.Log($"Всего слотов персонажей: {sizeCharapterAll}");
 
@@ -51,11 +50,26 @@ public class BattleManager : MonoBehaviour
         
     }
 
-    void MakeSituation()
+    public int GetWoundedCount()
     {
-        //получить Situation и в зависимости от типа отдать.
-        
-        
+        int count = 0;
+        foreach (GameObject slot in CharactersSlot)
+        {
+            if (slot == null) continue;
+            Health unitHealth = slot.GetComponentInChildren<Health>();
+            if (unitHealth != null && unitHealth._health < unitHealth._maxHealth * 0.5f)
+                count++;
+        }
+        return count;
     }
-    
+
+    public int GetDeadCount()
+    {
+        int count = 0;
+        foreach (GameObject slot in CharactersSlot)
+        {
+            if (slot == null) count++;
+        }
+        return count;
+    }
 }

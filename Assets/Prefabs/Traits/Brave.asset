@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Brave
   m_EditorClassIdentifier: Assembly-CSharp::CharacterTraits
   traitName: Brave
-  bravery: 4
+  bravery: 6
   cowardice: 3
   empathy: 4
   closedness: 2

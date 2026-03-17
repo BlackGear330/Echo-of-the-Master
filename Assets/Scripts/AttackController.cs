@@ -26,7 +26,10 @@ public class AttackController : MonoBehaviour
         _decisionMaker = GetComponentInChildren<DecisionMaker>();
         if (_unit._faction == FactionType.Player && _decisionMaker != null )
         {
-            decision = _decisionMaker.MakeDecision();
+            decision = _decisionMaker.MakeDecision(
+                _battleManager.GetWoundedCount(), 
+                _battleManager.GetDeadCount()
+            );
         }
         
     }

@@ -14,7 +14,6 @@ namespace AILogic
     public class DecisionMaker : MonoBehaviour
     {
         States _states;
-        // Situation будет передаваться извне (из BattleManager)
         Memory _memory;
         [SerializeField] private CharacterTraits _characterTraits;
         
@@ -29,33 +28,44 @@ namespace AILogic
             }
         }
 
-        public AIDecision MakeDecision()
+        public AIDecision MakeDecision(int wounded, int dead)
         {
-            //должен получать Situation из BattleManager
+            Situations situations = WorldManager.Instance.activeSituations;
+            float sitStress = situations != null ? situations.situationStress : 0f;
+            float sitFear = situations != null ? situations.situationFear : 0f;
+            float sitExhaustion = situations != null ? situations.situationExhaustion : 0f;
 
+            
+            
             float fightWeight = _characterTraits.bravery;
             float apathyWeight = _characterTraits.anxiety;
             float retreatWeight = _characterTraits.cowardice;
-            float randomFactor = UnityEngine.Random.Range(0.85f, 1.15f); // для генерации рандома.
-            float panicMod = Mathf.Clamp01((_states.stress + _states.fear) / 100f); // общий множитель для 3 вариантов
-            float exhaustionMod =  Mathf.Clamp01(_states.exhaustion / 100f);
+            float randomFactorfight = UnityEngine.Random.Range(0.95f, 1.05f); 
+            float randomFactorapathy = UnityEngine.Random.Range(0.95f, 1.05f);
+            float randomFactorretreat = UnityEngine.Random.Range(0.95f, 1.05f);
+            float woundedPenalty = wounded * 15f + dead * 25f;
+            Debug.Log($"раненых {wounded}, мертвых {dead}");
+            float effectivePanic = Mathf.Clamp(_states.stress + _states.fear + sitStress + sitFear + woundedPenalty, 0f, 100f);
+            float effectiveExhaust = Mathf.Clamp(_states.exhaustion + sitExhaustion, 0f, 100f);
+            float panicMod = effectivePanic / 100f; 
+            float exhaustionMod = effectiveExhaust / 100f;
             
             // БОЙ: паника мешает, усталость мешает
             fightWeight *= (1f - panicMod) * (1f - exhaustionMod);
-            // АПАТИЯ: паника усиливает ступор, усталость СИЛЬНО усиливает (в квадрате)
-            apathyWeight *= (1f + panicMod) * (1f + exhaustionMod * exhaustionMod);
             // ОТСТУПЛЕНИЕ: паника СИЛЬНО гонит (в квадрате), усталость немного.
             retreatWeight *= (1f + panicMod * panicMod) * (1f + exhaustionMod * 0.5f);
-            
+            // АПАТИЯ: паника усиливает ступор, усталость СИЛЬНО усиливает (в квадрате)
+            apathyWeight *= (1f + panicMod) * (1f + exhaustionMod * exhaustionMod);
+
             //Расчет с модификаторами с защитой от 0.
-            fightWeight = Mathf.Max(fightWeight * randomFactor, 1f);
-            apathyWeight = Mathf.Max(apathyWeight * randomFactor, 1f);
-            retreatWeight = Mathf.Max(retreatWeight * randomFactor, 1f);
+            fightWeight = Mathf.Max(fightWeight * randomFactorfight, 0.1f);
+            retreatWeight = Mathf.Max(retreatWeight * randomFactorretreat, 0.1f);
+            apathyWeight = Mathf.Max(apathyWeight * randomFactorapathy, 0.1f);
             
             
-            Debug.Log($"Fight weight {fightWeight}, храбрость: {_characterTraits.bravery}, стресс: {_states.stress}, страх: {_states.fear}, усталость {_states.exhaustion}");
-            Debug.Log($"Apathy weight {apathyWeight}, тревожность: {_characterTraits.anxiety}, стресс: {_states.stress}, страх: {_states.fear}");
-            Debug.Log($"Retreat weight {retreatWeight}, трусость: {_characterTraits.cowardice}, стресс: {_states.stress}, страх: {_states.fear}");
+            Debug.Log($"Fight weight {fightWeight}, храбрость: {_characterTraits.bravery}, стресс: {_states.stress}, страх: {_states.fear}, усталость {_states.exhaustion}, стресс ситуации {sitStress}, страх ситуации {sitFear}, усталость ситуации {sitExhaustion}");
+            Debug.Log($"Apathy weight {apathyWeight}, тревожность: {_characterTraits.anxiety}, стресс: {_states.stress}, страх: {_states.fear}, стресс ситуации {sitStress}, страх ситуации {sitFear}, усталость ситуации {sitExhaustion}");
+            Debug.Log($"Retreat weight {retreatWeight}, трусость: {_characterTraits.cowardice}, стресс: {_states.stress}, страх: {_states.fear}, стресс ситуации {sitStress}, страх ситуации {sitFear}, усталость ситуации {sitExhaustion}");
             
             //Нормализация
             float totalWeight = fightWeight + apathyWeight + retreatWeight;
@@ -63,6 +73,7 @@ namespace AILogic
             float fightWeightPercent = fightWeight /  totalWeight * 100f;
             float apathyWeightPercent = apathyWeight /  totalWeight * 100f;
             float retreatWeightPercent = retreatWeight /  totalWeight * 100f;
+            
             
             Debug.Log($"В процентах шанс боя {fightWeightPercent}%");
             Debug.Log($"В процентах шанс апатии {apathyWeightPercent}%");

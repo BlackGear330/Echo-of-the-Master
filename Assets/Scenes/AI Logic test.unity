@@ -4090,6 +4090,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6c4572e07a60b43b00e1c4f489a806, type: 3}
+--- !u!1 &1549622509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1549622511}
+  - component: {fileID: 1549622510}
+  m_Layer: 0
+  m_Name: _WorldManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1549622510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549622509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a2c1189fbf538408afb1673b00017b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldManager
+  _activeSituations: {fileID: 11400000, guid: 67222f6864a7273418493da07904583a, type: 2}
+--- !u!4 &1549622511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549622509}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.74988, y: 0.01, z: 6.40088}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1554345212
 GameObject:
   m_ObjectHideFlags: 0
@@ -6730,6 +6775,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharapterMelee
       objectReference: {fileID: 0}
+    - target: {fileID: 5665411083262148940, guid: f6ebbc9548e418942bae5cef01a38614, type: 3}
+      propertyPath: _health
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8486921439092644982, guid: f6ebbc9548e418942bae5cef01a38614, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6784,6 +6833,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1333777132}
     m_Modifications:
+    - target: {fileID: 62509852356870463, guid: dd6286ab45c0386418dfd6e8ead116f4, type: 3}
+      propertyPath: _health
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2024823927390085837, guid: dd6286ab45c0386418dfd6e8ead116f4, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -6904,6 +6957,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1776262094}
+  - {fileID: 1549622511}
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
