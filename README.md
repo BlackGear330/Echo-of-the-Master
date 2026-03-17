@@ -118,8 +118,8 @@ Retreat = Cowardice × (1 + panicMod²)  × (1 + exhaustionMod×0.5)  × Random(
 - [x] Боевые классы - Воин, Лучник, Маг/Жрец
 - [x] BattleManager - слоты, проверка занятости
 - [x] DecisionMaker - формулы весов, модификаторы, нормализация
-- [ ] DecisionMaker - финальный выбор решения (в работе)
-- [ ] Интеграция DecisionMaker с AttackController
+- [x] DecisionMaker - финальный выбор решения (в работе)
+- [x] Интеграция DecisionMaker с AttackController
 - [ ] Memory.RecordResult - запись и анализ опыта
 - [ ] Система ситуаций - передача контекста из BattleManager в ИИ
 - [ ] Лояльность между героями
