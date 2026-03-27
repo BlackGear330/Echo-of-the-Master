@@ -9,10 +9,11 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _health = Mathf.Clamp(_health - damage, 0f, _maxHealth);
-        if (_health <= 0)
-        {
+        BattleManager bm = FindAnyObjectByType<BattleManager>();
+        if (bm != null)
+            bm.CheckAllState();
+        if (_health <= 0) 
             Die();
-        }
     }
 
     void Die()

@@ -15,6 +15,7 @@ public class AttackController : MonoBehaviour
     private float _nextAttackTime = 0f;
     DecisionMaker _decisionMaker;
     AIDecision decision;
+    bool AttackApathy;
 
     void Start()
     {
@@ -36,6 +37,21 @@ public class AttackController : MonoBehaviour
 
     private void PerformAttack()
     {
+        if (decision == AIDecision.Apathy)
+        {
+            if (!AttackApathy)
+            {
+                _nextAttackTime = Time.time + _unit.AttackSpeed * 2;
+                AttackApathy = true;
+                return;
+            }
+            
+            if (Time.time > _nextAttackTime )
+            {
+                decision = AIDecision.Fight;
+                AttackApathy = false;
+            }
+        }
         if (decision != AIDecision.Fight)
             return;
         
@@ -118,6 +134,12 @@ public class AttackController : MonoBehaviour
     {
         PerformAttack();
     }
-    
-    
+
+    public void ReMakeDecision(int wounded, int dead)
+    {
+        if (_unit._faction == FactionType.Player && _decisionMaker != null)
+        {
+            decision = _decisionMaker.MakeDecision(wounded, dead);
+        }
+    }
 }

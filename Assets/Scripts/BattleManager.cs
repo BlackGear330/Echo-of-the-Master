@@ -6,6 +6,7 @@ public class BattleManager : MonoBehaviour
 {
     public GameObject[] EnemiesSlot;
     public GameObject[] CharactersSlot;
+    private bool _retriggered = false;
 
     public bool IsSlotOccupied(GameObject[] currentSlots, int i) // проверка, что у слота массива есть компонент Health
     {
@@ -72,4 +73,37 @@ public class BattleManager : MonoBehaviour
         }
         return count;
     }
+
+    public void CheckAllState()
+    {
+        if (_retriggered == true) return;
+        
+        foreach (GameObject slot in CharactersSlot)
+        {
+            if (slot ==null)
+            {
+                _retriggered = true; break;
+            }
+            Health h = slot.GetComponentInChildren<Health>();
+            if (h != null && h._health < h._maxHealth * 0.5f)
+            {
+                _retriggered = true; break;
+            }
+            
+        }
+        
+        if (!_retriggered) return;
+        
+        foreach (GameObject slot1 in CharactersSlot)
+        {
+            if (slot1 == null) continue;
+            AttackController ac = slot1.GetComponentInChildren<AttackController>();
+            if (ac != null)
+            {
+                ac.ReMakeDecision(GetWoundedCount(), GetDeadCount());
+            }
+        }
+        
+    }
+    
 }
